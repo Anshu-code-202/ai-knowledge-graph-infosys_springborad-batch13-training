@@ -189,11 +189,14 @@ AI-Knowledge-Graph-Builder/
 ├── graph_builder/
 ├── embeddings/
 ├── rag_pipeline/
-├── flask_app/
 │
 ├── requirements.txt
 ├── README.md
-
+screenshots/
+│
+├── embedding_generation.png
+├── faiss_index_creation.png
+├── rag_query_output.png
 ----
 
 ---
