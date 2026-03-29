@@ -1,6 +1,6 @@
 # =========================================================
 # AI KNOWLEDGE GRAPH QUERY SYSTEM
-# Professional User-Friendly Version
+# Clean Stable Version
 # =========================================================
 
 import streamlit as st
@@ -24,11 +24,11 @@ st.set_page_config(
 # TITLE
 # =========================================================
 
-st.title("AI Knowledge Graph Query System")
+st.title("📊 AI Knowledge Graph Query System")
 
 st.markdown("""
 This system retrieves **relevant order information**
-using FAISS similarity search and AI embeddings.
+using **FAISS similarity search** and **AI embeddings**.
 """)
 
 # =========================================================
@@ -51,26 +51,29 @@ def load_texts():
         return pickle.load(f)
 
 
+# =========================================================
+# LOAD SYSTEM
+# =========================================================
+
 try:
 
     model = load_model()
     index = load_index()
     texts = load_texts()
 
-    st.success("System Loaded Successfully")
+    st.success("✅ System Loaded Successfully")
 
 except Exception as e:
 
-    st.error("System loading failed")
+    st.error("❌ System loading failed")
     st.error(e)
     st.stop()
-
 
 # =========================================================
 # SIDEBAR
 # =========================================================
 
-st.sidebar.header("System Information")
+st.sidebar.header("📌 System Information")
 
 st.sidebar.write(
     f"Total Records: {len(texts)}"
@@ -92,9 +95,8 @@ st.sidebar.markdown("""
 - Knowledge Graph  
 """)
 
-
 # =========================================================
-# SMART SEARCH FUNCTION
+# SEARCH FUNCTION
 # =========================================================
 
 def smart_search(query, k=5):
@@ -150,10 +152,10 @@ def smart_search(query, k=5):
 
 
 # =========================================================
-# USER QUERY SECTION
+# USER INPUT
 # =========================================================
 
-st.subheader("Query Interface")
+st.subheader("🔎 Query Interface")
 
 query = st.text_input(
     "Enter your query:",
@@ -176,7 +178,7 @@ if st.button("Search"):
     if query.strip() == "":
 
         st.warning(
-            "Please enter a query."
+            "⚠️ Please enter a query."
         )
 
     else:
@@ -190,7 +192,7 @@ if st.button("Search"):
                 top_k
             )
 
-        st.subheader("Search Results")
+        st.subheader("📄 Search Results")
 
         if len(results) == 0:
 
@@ -212,12 +214,11 @@ if st.button("Search"):
                     """
                 )
 
-
 # =========================================================
 # EXAMPLE QUERIES
 # =========================================================
 
-st.markdown("### Example Queries")
+st.markdown("### 💡 Example Queries")
 
 example_queries = [
     "Show delivered orders",
@@ -231,14 +232,13 @@ for q in example_queries:
 
     st.write("•", q)
 
-
 # =========================================================
 # DATA PREVIEW
 # =========================================================
 
 st.markdown("---")
 
-st.subheader("Sample Data Preview")
+st.subheader("📊 Sample Data Preview")
 
 try:
 
@@ -249,7 +249,7 @@ try:
 
     st.dataframe(
         preview_df,
-        width="stretch"
+        use_container_width=True
     )
 
 except:
@@ -257,7 +257,6 @@ except:
     st.warning(
         "Data preview not available."
     )
-
 
 # =========================================================
 # FOOTER
